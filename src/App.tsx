@@ -21,6 +21,10 @@ export type AnswerObject = {
   correctAnswer: string;
 };
 
+export type UserChoice = {
+  dificulty: string;
+};
+
 const TOTAL_QUESTIONS = 10;
 
 const App = () => {
@@ -30,15 +34,27 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
-  console.log(questions);
+  const [dificulty, setDificulty] = useState<string>("");
+  const [choice, setChoice] = useState("easy");
+  console.log(dificulty, "test");
   console.log(loading, gameOver);
 
   // console.log(fetchQQuestions(TOTAL_QUESTIONS, Difficulty.EASY));
 
+  // let setUserDiificulty = async (dificulty: any) => {
+  //   if (dificulty === 1) {
+  //     dificulty = Difficulty.EASY;
+  //   } else if (dificulty === 2) {
+  //     dificulty = Difficulty.MEDIOUM;
+  //   } else {
+  //     Difficulty.HARD;
+  //   }
+  //   return Difficulty;
+  // };
   const startQuiz = async () => {
     setLoading(true);
     setGameOver(false);
-
+    // setUserDiificulty(dificulty);
     const newQuestions = await fetchQQuestions(
       TOTAL_QUESTIONS,
       Difficulty.EASY
@@ -104,6 +120,18 @@ const App = () => {
       <GlobalStyle />
       <Wrapper>
         <h1>REACT QUIZ</h1>
+        {/* <div>
+          <h2>Set Dificulty Level</h2>
+          <button onClick={() => setDificulty(Difficulty.EASY)} value={1}>
+            easy
+          </button>
+          <button onClick={() => setDificulty(Difficulty.MEDIOUM)} value={2}>
+            medium
+          </button>
+          <button onClick={() => setDificulty(Difficulty.HARD)} value={3}>
+            hard
+          </button>
+        </div> */}
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <button className="start" onClick={startQuiz}>
             Start
