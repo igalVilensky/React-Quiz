@@ -54,11 +54,8 @@ const App = () => {
   const startQuiz = async () => {
     setLoading(true);
     setGameOver(false);
-    // setUserDiificulty(dificulty);
-    const newQuestions = await fetchQQuestions(
-      TOTAL_QUESTIONS,
-      Difficulty.EASY
-    );
+    setDificulty(dificulty);
+    const newQuestions = await fetchQQuestions(TOTAL_QUESTIONS, dificulty);
 
     setQuestions(newQuestions);
     setScore(0);
@@ -120,18 +117,18 @@ const App = () => {
       <GlobalStyle />
       <Wrapper>
         <h1>REACT QUIZ</h1>
-        {/* <div>
+        <div>
           <h2>Set Dificulty Level</h2>
           <button onClick={() => setDificulty(Difficulty.EASY)} value={1}>
             easy
           </button>
-          <button onClick={() => setDificulty(Difficulty.MEDIOUM)} value={2}>
+          <button onClick={() => setDificulty(Difficulty.MEDIUM)} value={2}>
             medium
           </button>
           <button onClick={() => setDificulty(Difficulty.HARD)} value={3}>
             hard
           </button>
-        </div> */}
+        </div>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <button className="start" onClick={startQuiz}>
             Start
