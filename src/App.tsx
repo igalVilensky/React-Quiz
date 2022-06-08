@@ -117,18 +117,20 @@ const App = () => {
       <GlobalStyle />
       <Wrapper>
         <h1>REACT QUIZ</h1>
-        <div>
-          <h2>Set Dificulty Level</h2>
-          <button onClick={() => setDificulty(Difficulty.EASY)} value={1}>
-            easy
-          </button>
-          <button onClick={() => setDificulty(Difficulty.MEDIUM)} value={2}>
-            medium
-          </button>
-          <button onClick={() => setDificulty(Difficulty.HARD)} value={3}>
-            hard
-          </button>
-        </div>
+        {dificulty === "" && (
+          <div>
+            <h2>Set Dificulty Level</h2>
+            <button onClick={() => setDificulty(Difficulty.EASY)} value={1}>
+              easy
+            </button>
+            <button onClick={() => setDificulty(Difficulty.MEDIUM)} value={2}>
+              medium
+            </button>
+            <button onClick={() => setDificulty(Difficulty.HARD)} value={3}>
+              hard
+            </button>
+          </div>
+        )}
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <button className="start" onClick={startQuiz}>
             Start
