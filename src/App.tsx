@@ -119,16 +119,25 @@ const App = () => {
         <h1>REACT QUIZ</h1>
         {dificulty === "" && (
           <div>
-            <h2>Set Dificulty Level</h2>
-            <button onClick={() => setDificulty(Difficulty.EASY)} value={1}>
-              easy
-            </button>
-            <button onClick={() => setDificulty(Difficulty.MEDIUM)} value={2}>
-              medium
-            </button>
-            <button onClick={() => setDificulty(Difficulty.HARD)} value={3}>
-              hard
-            </button>
+            <div className="setLevel">
+              <div className="setlevelHeading">
+                <h2 className="">Set Dificulty Level</h2>
+              </div>
+              <div className="setLevelButtons">
+                <button onClick={() => setDificulty(Difficulty.EASY)} value={1}>
+                  easy
+                </button>
+                <button
+                  onClick={() => setDificulty(Difficulty.MEDIUM)}
+                  value={2}
+                >
+                  medium
+                </button>
+                <button onClick={() => setDificulty(Difficulty.HARD)} value={3}>
+                  hard
+                </button>
+              </div>
+            </div>
           </div>
         )}
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
@@ -137,16 +146,23 @@ const App = () => {
           </button>
         ) : null}
         {!gameOver ? <p className="score">Score:{score}</p> : null}
-        {loading && <p>Loading Questions ...</p>}
+        {loading && <p className="loading">Loading Questions ...</p>}
         {!loading && !gameOver && (
-          <QCard
-            questionNr={number + 1}
-            totalQuestions={TOTAL_QUESTIONS}
-            question={questions[number].question}
-            answers={questions[number].answers}
-            userAnswer={userAnswers ? userAnswers[number] : undefined}
-            callback={checkAnswer}
-          />
+          <>
+            <QCard
+              questionNr={number + 1}
+              totalQuestions={TOTAL_QUESTIONS}
+              question={questions[number].question}
+              answers={questions[number].answers}
+              userAnswer={userAnswers ? userAnswers[number] : undefined}
+              callback={checkAnswer}
+            />
+            <div className="quizLevelDisplay">
+              <h3>
+                Quiz Level: <span>{dificulty}</span>
+              </h3>
+            </div>
+          </>
         )}
         {!loading &&
         !gameOver &&

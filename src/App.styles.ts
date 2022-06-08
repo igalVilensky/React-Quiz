@@ -65,4 +65,21 @@ export const Wrapper = styled.div`
   .start {
     max-width: 200px;
   }
+  .setLevel {
+    width: 50vw;
+  }
+  .setLevelButtons {
+    display: flex;
+    justify-content: center;
+  }
+  .setlevelHeading {
+    color: white;
+    display: flex;
+    width: 50vw;
+    justify-content: center;
+  }
+  .loading,
+  .quizLevelDisplay {
+    color: white;
+  }
 `;
