@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchQQuestions } from "./API";
 
 /**
@@ -157,20 +157,25 @@ const App = () => {
               userAnswer={userAnswers ? userAnswers[number] : undefined}
               callback={checkAnswer}
             />
-            <div className="quizLevelDisplay">
-              <h3>
-                Quiz Level: <span>{dificulty}</span>
-              </h3>
-            </div>
           </>
         )}
+        {number !== TOTAL_QUESTIONS - 1 ? (
+          <div className="quizLevelDisplay">
+            <h3>
+              Quiz Level: <span>{dificulty}</span>
+            </h3>
+          </div>
+        ) : null}
+
         {!loading &&
         !gameOver &&
         userAnswers.length === number + 1 &&
         number !== TOTAL_QUESTIONS - 1 ? (
-          <button className="next" onClick={nextQuestion}>
-            Next Question
-          </button>
+          <>
+            <button className="next" onClick={nextQuestion}>
+              Next Question
+            </button>
+          </>
         ) : null}
       </Wrapper>
     </>
